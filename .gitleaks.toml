@@ -4,9 +4,25 @@ useDefault = true
 
 [[rules]]
 id = "playbook-secrets"
-description = "Found Hardcoded Secrets"
-regex = '''(?i)(myApp.*key).*?(\?\?|\=)\s*["']([^"']+)["']'''
-tags = ["env", "key", "myApp"]
+description = "Found hardcoded application secrets"
+regex = '''(?i)(key|api[_-]?key|token|secret|password|client[_-]?secret)\s*[:=]\s*["']?[^\s"']{6,}["']?'''
+entropy = 0
+tags = ["infra", "secret"]
 keywords = [
-    "key","api","token","secret","client","auth","access",
+  "key",
+  "api",
+  "token",
+  "secret",
+  "client",
+  "auth",
+  "access",
+  "password"
 ]
+
+[[rules]]
+id = "yaml-secret"
+description = "Possible hardcoded secret in YAML files"
+regex = '''(?i)^\s*(password|secret|token|api[_-]?key|private[_-]?key)\s*:\s*["']?[^\s"']{6,}["']?'''
+entropy = 0
+tags = ["yaml", "secret"]
+path = '''(?i)\.(yml|yaml)$'''

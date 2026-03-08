@@ -4,3 +4,4 @@
 *.crt
 *.csr
 *.pem
+local-vars.yaml
