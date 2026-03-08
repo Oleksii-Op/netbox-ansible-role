@@ -1,5 +1,7 @@
 [extend]
 useDefault = true
+[allowlists]
+paths = ['netbox/defaults/nginx.yaml']
 
 
 [[rules]]

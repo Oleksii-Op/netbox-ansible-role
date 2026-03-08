@@ -1,0 +1,8 @@
+netbox_email_server: localhost
+netbox_email_port: 25
+netbox_email_username: ""
+netbox_email_password: ""
+netbox_email_use_ssl: false
+netbox_email_use_tls: false
+netbox_email_timeout: 10
+netbox_email_from: ""

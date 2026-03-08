@@ -1,0 +1,60 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for netbox
+
+# CONFIGURATION
+netbox_allowed_hosts: ["*"]
+
+netbox_admins: []
+
+netbox_auth_password_validators: []
+
+netbox_base_path: ""
+
+netbox_cors_allow_all: false
+netbox_cors_whitelist: []
+netbox_cors_regex_whitelist: []
+
+netbox_csrf_cookie_name: csrftoken
+
+netbox_debug: false
+netbox_default_language: en-us
+
+netbox_exempt_view_permissions: []
+
+netbox_internal_ips:
+  - 127.0.0.1
+  - "::1"
+
+netbox_logging: {}
+
+netbox_login_persistence: False
+netbox_login_required: True
+netbox_login_timeout: 30
+netbox_login_form_hidden: False
+
+netbox_logout_redirect_url: home
+
+netbox_metrics_enabled: False
+
+netbox_plugins: []
+netbox_plugins_config: {}
+
+netbox_remote_auth_enabled: False
+netbox_remote_auth_backend: netbox.authentication.RemoteUserBackend
+netbox_remote_auth_header: HTTP_REMOTE_USER
+netbox_remote_auth_user_first_name: HTTP_REMOTE_USER_FIRST_NAME
+netbox_remote_auth_user_last_name: HTTP_REMOTE_USER_LAST_NAME
+netbox_remote_auth_user_email: HTTP_REMOTE_USER_EMAIL
+netbox_remote_auth_auto_create_user: true
+netbox_remote_auth_default_groups: []
+netbox_remote_auth_default_permissions: {}
+
+netbox_release_check_url: "https://api.github.com/repos/netbox-community/netbox/releases"
+
+netbox_rq_default_timeout: 300
+
+netbox_session_cookie_name: sessionid
+netbox_session_file_path: None
+
+netbox_time_zone: UTC

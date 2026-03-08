@@ -1,0 +1,12 @@
+# This file must be provided with variables
+
+netbox_superuser:
+  username: ""
+  password: ""
+  email: ""
+
+netbox_secret_key: ""
+netbox_api_token_peppers:
+  1: ""
+
+netbox_db_user_password: ""

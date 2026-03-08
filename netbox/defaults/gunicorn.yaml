@@ -1,0 +1,15 @@
+netbox_gunicorn_bind: "127.0.0.1:8001"
+
+# Performance tuning
+netbox_gunicorn_workers: 3
+netbox_gunicorn_threads: 3
+
+# Timeouts
+netbox_gunicorn_timeout: 120
+
+# Worker lifecycle
+netbox_gunicorn_max_requests: 5000
+netbox_gunicorn_max_requests_jitter: 500
+
+# Optional header mapping (for remote auth setups)
+netbox_gunicorn_header_map: null

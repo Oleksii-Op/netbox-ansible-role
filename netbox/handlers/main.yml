@@ -1,0 +1,28 @@
+#SPDX-License-Identifier: MIT-0
+---
+# handlers file for netbox
+- name: Reload systemd daemon
+  systemd:
+    daemon_reload: true
+
+- name: Restart netbox services
+  service:
+    name: "{{ item }}"
+    state: restarted
+  loop:
+    - netbox
+    - netbox-rq
+
+- name: Enable and start netbox services
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop:
+    - netbox
+    - netbox-rq
+
+- name: Restart nginx
+  service:
+    name: nginx
+    state: restarted

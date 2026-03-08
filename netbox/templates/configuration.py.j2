@@ -1,0 +1,113 @@
+#########################
+# Required settings
+#########################
+
+ALLOWED_HOSTS = {{ netbox_allowed_hosts | to_json }}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '{{ netbox_db_name | default("") }}',
+        'USER': '{{ netbox_db_user | default("") }}',
+        'PASSWORD': '{{ netbox_db_user_password | default("") }}',
+        'HOST': '{{ netbox_sql_db_host | default("localhost") }}',
+        'PORT': {{ netbox_sql_db_port | default(5432) }},
+        'CONN_MAX_AGE': {{ netbox_db_conn_max_age | default(300) }},
+    }
+}
+
+REDIS = {
+    'tasks': {
+        'HOST': '{{ netbox_redis_host | default("localhost") }}',
+        'PORT': {{ netbox_redis_port | default(6379) }},
+        'USERNAME': '{{ netbox_redis_username | default("") }}',
+        'PASSWORD': '{{ netbox_redis_password | default("") }}',
+        'DATABASE': {{ netbox_redis_tasks_db | default(0) }},
+        'SSL': {{ netbox_redis_ssl | default(False) }},
+    },
+    'caching': {
+        'HOST': '{{ netbox_redis_host | default("localhost") }}',
+        'PORT': {{ netbox_redis_port | default(6379) }},
+        'USERNAME': '{{ netbox_redis_username | default("") }}',
+        'PASSWORD': '{{ netbox_redis_password | default("") }}',
+        'DATABASE': {{ netbox_redis_cache_db | default(1) }},
+        'SSL': {{ netbox_redis_ssl | default(False) }},
+    }
+}
+
+SECRET_KEY = '{{ netbox_secret_key | default("changeme") }}'
+
+API_TOKEN_PEPPERS = {
+{% for id, pepper in netbox_api_token_peppers.items() %}
+    {{ id }}: '{{ pepper }}',
+{% endfor %}
+}
+
+#########################
+# Optional settings
+#########################
+
+ADMINS = {{ netbox_admins | to_json }}
+
+AUTH_PASSWORD_VALIDATORS = {{ netbox_auth_password_validators | to_json }}
+
+BASE_PATH = '{{ netbox_base_path | default("") }}'
+
+CORS_ORIGIN_ALLOW_ALL = {{ netbox_cors_allow_all }}
+CORS_ORIGIN_WHITELIST = {{ netbox_cors_whitelist | to_json }}
+CORS_ORIGIN_REGEX_WHITELIST = {{ netbox_cors_regex_whitelist | to_json }}
+
+CSRF_COOKIE_NAME = '{{ netbox_csrf_cookie_name | default("csrftoken") }}'
+
+DEBUG = {{ netbox_debug }}
+
+DEFAULT_LANGUAGE = '{{ netbox_default_language | default("en-us") }}'
+
+EMAIL = {
+    'SERVER': '{{ netbox_email_server | default("") }}',
+    'PORT': {{ netbox_email_port | default(25) }},
+    'USERNAME': '{{ netbox_email_username | default("") }}',
+    'PASSWORD': '{{ netbox_email_password | default("") }}',
+    'USE_SSL': {{ netbox_email_use_ssl | default(False) }},
+    'USE_TLS': {{ netbox_email_use_tls | default(False) }},
+    'TIMEOUT': {{ netbox_email_timeout | default(10) }},
+    'FROM_EMAIL': '{{ netbox_email_from | default("") }}',
+}
+
+EXEMPT_VIEW_PERMISSIONS = {{ netbox_exempt_view_permissions | to_json }}
+
+INTERNAL_IPS = {{ netbox_internal_ips | to_json }}
+
+LOGGING = {{ netbox_logging | to_json }}
+
+# Login settings
+LOGIN_PERSISTENCE = {{ netbox_login_persistence }}
+LOGIN_REQUIRED = {{ netbox_login_required }}
+LOGIN_TIMEOUT = {{ netbox_login_timeout | default(30) }}
+
+LOGIN_FORM_HIDDEN = {{ netbox_login_form_hidden }}
+LOGOUT_REDIRECT_URL = '{{ netbox_logout_redirect_url | default("home") }}'
+
+METRICS_ENABLED = {{ netbox_metrics_enabled }}
+
+PLUGINS = {{ netbox_plugins | to_json }}
+PLUGINS_CONFIG = {{ netbox_plugins_config | to_json }}
+
+REMOTE_AUTH_ENABLED = {{ netbox_remote_auth_enabled }}
+REMOTE_AUTH_BACKEND = '{{ netbox_remote_auth_backend | default("netbox.authentication.RemoteUserBackend") }}'
+REMOTE_AUTH_HEADER = '{{ netbox_remote_auth_header | default("HTTP_REMOTE_USER") }}'
+REMOTE_AUTH_USER_FIRST_NAME = '{{ netbox_remote_auth_user_first_name | default("HTTP_REMOTE_USER_FIRST_NAME") }}'
+REMOTE_AUTH_USER_LAST_NAME = '{{ netbox_remote_auth_user_last_name | default("HTTP_REMOTE_USER_LAST_NAME") }}'
+REMOTE_AUTH_USER_EMAIL = '{{ netbox_remote_auth_user_email | default("HTTP_REMOTE_USER_EMAIL") }}'
+REMOTE_AUTH_AUTO_CREATE_USER = {{ netbox_remote_auth_auto_create_user }}
+REMOTE_AUTH_DEFAULT_GROUPS = {{ netbox_remote_auth_default_groups | to_json }}
+REMOTE_AUTH_DEFAULT_PERMISSIONS = {{ netbox_remote_auth_default_permissions | to_json }}
+
+RELEASE_CHECK_URL = "{{ netbox_release_check_url }}"
+
+RQ_DEFAULT_TIMEOUT = {{ netbox_rq_default_timeout | default(300) }}
+
+SESSION_COOKIE_NAME = '{{ netbox_session_cookie_name | default("sessionid") }}'
+SESSION_FILE_PATH = {{ netbox_session_file_path | default(None) }}
+
+TIME_ZONE = '{{ netbox_time_zone | default("UTC") }}'

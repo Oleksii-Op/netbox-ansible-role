@@ -1,0 +1,29 @@
+# nginx server
+netbox_server_name: netbox.example.com
+
+# nginx ports
+netbox_nginx_http_port: 80
+netbox_nginx_https_port: 443
+netbox_nginx_ipv6: true
+
+# body upload size
+netbox_nginx_client_max_body_size: 25m
+
+# TLS certificates
+netbox_ssl_cert: /etc/nginx/ssl/netbox.crt
+netbox_ssl_key: /etc/nginx/ssl/netbox.key
+
+# static files
+netbox_static_root: /opt/netbox/netbox/static
+
+# HTTP redirect
+netbox_nginx_http_redirect_server_name: _
+
+# backend type
+netbox_wsgi_backend: gunicorn
+
+# gunicorn upstream
+netbox_gunicorn_bind: 127.0.0.1:8001
+
+# uwsgi (if ever used)
+netbox_uwsgi_socket: 127.0.0.1:8001

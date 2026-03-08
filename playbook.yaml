@@ -1,0 +1,26 @@
+# This playbook has been tested on
+#PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+#VERSION_CODENAME=trixie
+#DEBIAN_VERSION_FULL=13.2
+---
+- name: Install NetBox on Debian 13
+  hosts: all
+  become: true
+  gather_facts: true
+
+  pre_tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: true
+
+    - name: Load role variable files
+      include_vars:
+        dir: ./netbox/defaults/
+        extensions:
+          - yml
+          - yaml
+
+  roles:
+    - role: netbox
+      tags: netbox
+...

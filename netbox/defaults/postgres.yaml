@@ -1,0 +1,8 @@
+# This file must be provided with variables
+
+netbox_db_name: netbox
+netbox_db_user: netbox
+netbox_db_user_password: ""
+netbox_sql_db_host: localhost
+netbox_sql_db_port: 5432
+netbox_db_conn_max_age: 300

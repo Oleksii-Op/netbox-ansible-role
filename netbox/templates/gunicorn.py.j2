@@ -1,0 +1,22 @@
+# Gunicorn configuration for NetBox
+
+# The IP address and port that the NetBox WSGI process should listen on
+bind = '{{ netbox_gunicorn_bind }}'
+
+# Number of gunicorn workers (recommended: 2*CPU + 1)
+workers = {{ netbox_gunicorn_workers }}
+
+# Number of threads per worker process
+threads = {{ netbox_gunicorn_threads }}
+
+# Timeout (seconds) for a request to complete
+timeout = {{ netbox_gunicorn_timeout }}
+
+# The maximum number of requests a worker can handle before being respawned
+max_requests = {{ netbox_gunicorn_max_requests }}
+max_requests_jitter = {{ netbox_gunicorn_max_requests_jitter }}
+
+# Allow HTTP headers with underscores (needed for some auth proxies)
+# Uncomment this line to accept HTTP headers containing underscores, e.g. for remote
+# authentication support. See https://docs.gunicorn.org/en/stable/settings.html#header-map
+# header-map = 'dangerous'
