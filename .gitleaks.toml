@@ -1,0 +1,12 @@
+[extend]
+useDefault = true
+
+
+[[rules]]
+id = "playbook-secrets"
+description = "Found Hardcoded Secrets"
+regex = '''(?i)(myApp.*key).*?(\?\?|\=)\s*["']([^"']+)["']'''
+tags = ["env", "key", "myApp"]
+keywords = [
+    "key","api","token","secret","client","auth","access",
+]

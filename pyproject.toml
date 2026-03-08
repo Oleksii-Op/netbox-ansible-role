@@ -1,0 +1,9 @@
+[project]
+name = "netbox-ansible-role"
+version = "0.1.0"
+description = "Ansible role for deploying Netbox"
+requires-python = ">=3.12"
+dependencies = [
+    "ansible>=13.4.0",
+    "pre-commit>=4.5.1",
+]
